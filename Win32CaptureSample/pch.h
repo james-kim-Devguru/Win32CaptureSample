@@ -55,3 +55,10 @@
 #include "util/stream.interop.h"
 #include "util/hwnd.interop.h"
 #include "completionSource.h"
+
+
+//#include <windows.graphics.directx.direct3d11.interop.h>
+
+#include <winrt/Windows.Media.Core.h>
+#include <winrt/Windows.Media.MediaProperties.h>
+#include <winrt/Windows.Media.Transcoding.h>

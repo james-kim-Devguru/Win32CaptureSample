@@ -270,11 +270,13 @@
     <ClCompile Include="SampleWindow.cpp" />
     <ClCompile Include="SimpleCapture.cpp" />
     <ClCompile Include="SimpleImageEncoder.cpp" />
+    <ClCompile Include="SimpleVideoEncoder.cpp" />
     <ClCompile Include="WindowList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="ControlsHelper.h" />
+    <ClInclude Include="SimpleVideoEncoder.h" />
     <ClInclude Include="util\capture.desktop.interop.h" />
     <ClInclude Include="CaptureSnapshot.h" />
     <ClInclude Include="completionSource.h" />

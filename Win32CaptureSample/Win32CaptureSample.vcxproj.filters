@@ -10,6 +10,7 @@
     <ClCompile Include="WindowList.cpp" />
     <ClCompile Include="MonitorList.cpp" />
     <ClCompile Include="SimpleImageEncoder.cpp" />
+    <ClCompile Include="SimpleVideoEncoder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -52,6 +53,7 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="ControlsHelper.h" />
+    <ClInclude Include="SimpleVideoEncoder.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
