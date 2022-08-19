@@ -56,6 +56,18 @@
 #include "util/hwnd.interop.h"
 #include "completionSource.h"
 
+//
+//// robmikh.common
+//#include <robmikh.common/composition.interop.h>
+//#include <robmikh.common/direct3d11.interop.h>
+//#include <robmikh.common/d3dHelpers.h>
+//#include <robmikh.common/graphics.interop.h>
+//#include <robmikh.common/dispatcherqueue.desktop.interop.h>
+//#include <robmikh.common/d3dHelpers.desktop.h>
+//#include <robmikh.common/composition.desktop.interop.h>
+//#include <robmikh.common/hwnd.interop.h>
+//#include <robmikh.common/capture.desktop.interop.h>
+//#include <robmikh.common/DesktopWindow.h>
 
 //#include <windows.graphics.directx.direct3d11.interop.h>
 

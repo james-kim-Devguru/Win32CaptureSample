@@ -1,5 +1,7 @@
 #include "pch.h"
+#include "SimpleVideoEncoder.h"
 #include "SimpleCapture.h"
+#include <chrono>
 
 namespace winrt
 {
@@ -113,6 +115,8 @@ void SimpleCapture::OnFrameArrived(winrt::Direct3D11CaptureFramePool const& send
     auto swapChainResizedToFrame = false;
 
     {
+        std::chrono::system_clock::time_point pre = std::chrono::system_clock::now();
+
         auto frame = sender.TryGetNextFrame();
         swapChainResizedToFrame = TryResizeSwapChain(frame);
 
@@ -121,6 +125,27 @@ void SimpleCapture::OnFrameArrived(winrt::Direct3D11CaptureFramePool const& send
         auto surfaceTexture = GetDXGIInterfaceFromObject<ID3D11Texture2D>(frame.Surface());
         // copy surfaceTexture to backBuffer
         m_d3dContext->CopyResource(backBuffer.get(), surfaceTexture.get());
+
+
+        long long t = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - pre).count();
+        std::wstring log_msg;
+        log_msg = std::wstring(L"capture duplicate time : ") + std::to_wstring(t) + std::wstring(L"\n");
+        OutputDebugStringW(log_msg.c_str());
+
+        if (!m_encoder) {
+            m_encoder = std::make_unique<SimpleVideoEncoder>(
+                frame,
+                m_item,
+                m_item.Size(),
+                18000000,
+                60
+                );
+            m_encoder->StartEncoder();
+            //m_encoder->StreamReadAsync();
+        }
+        else {
+            m_encoder->EncodeAsync(frame);
+        }
     }
 
     DXGI_PRESENT_PARAMETERS presentParameters{};

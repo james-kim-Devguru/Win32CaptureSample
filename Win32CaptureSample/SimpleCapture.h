@@ -1,4 +1,5 @@
 #pragma once
+#include "SimpleVideoEncoder.h"
 
 class SimpleCapture
 {
@@ -59,4 +60,6 @@ private:
 
     std::atomic<bool> m_closed = false;
     std::atomic<bool> m_captureNextImage = false;
+
+    std::unique_ptr<SimpleVideoEncoder> m_encoder{ nullptr };
 };
