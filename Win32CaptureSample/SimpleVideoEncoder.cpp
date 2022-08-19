@@ -281,13 +281,29 @@ winrt::IAsyncAction SimpleVideoEncoder::EncodeAsync(winrt::Windows::Graphics::Ca
     //OutputDebugStringW(log_msg.c_str());
     if (m_memory_stream.CanRead())
     {
-        auto return_size = co_await m_memory_stream_reader.LoadAsync(stream_size - read_size);
-        read_size += return_size;
+
+
+        auto return_size = m_memory_stream_reader.LoadAsync(stream_size).GetResults();
+
+
+        //read_size += return_size;
         log_msg = std::wstring(L"read stream_size : ") + std::to_wstring(return_size) + std::wstring(L"\n");
         OutputDebugStringW(log_msg.c_str());
         std::vector<unsigned char> buffer(return_size);
         m_memory_stream_reader.ReadBytes(buffer);
-        //co_await m_memory_stream.FlushAsync();
+        auto temp = m_memory_stream.FlushAsync().GetResults();
+        m_memory_stream.Seek(0);
+        log_msg = std::wstring(L"flush result : ") + std::to_wstring(temp) + std::wstring(L"\n");
+        OutputDebugStringW(log_msg.c_str());
+
+
+        //auto return_size = co_await m_memory_stream_reader.LoadAsync(stream_size - read_size);
+        //read_size += return_size;
+        //log_msg = std::wstring(L"read stream_size : ") + std::to_wstring(return_size) + std::wstring(L"\n");
+        //OutputDebugStringW(log_msg.c_str());
+        //std::vector<unsigned char> buffer(return_size);
+        //m_memory_stream_reader.ReadBytes(buffer);
+        ////co_await m_memory_stream.FlushAsync();
     }
 
     co_return;
